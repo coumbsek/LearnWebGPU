@@ -80,7 +80,7 @@ A GPU buffer is **mapped** when it is connected to a specific part of the CPU-si
 
 For our little exercise, let us **create a second buffer**, called `buffer2`. We will load data in the first buffer, issue a **copy** command so that the GPU copies data from one to another, then **read** the destination buffer back.
 
-We can reuse the descriptor, only changing teh label for now:
+We can reuse the descriptor, only changing the label for now:
 
 ````{tab} With webgpu.hpp
 ```{lit} C++, Create a second buffer
@@ -167,7 +167,7 @@ wgpuQueueWriteBuffer(queue, buffer1, 0, numbers.data(), numbers.size());
 ```{note}
 Uploading data from the CPU-side memory (RAM) to the GPU-side memory (VRAM) **takes time**. When the function `writeBuffer()` returns, data transfer may not have finished yet but what is **guaranteed** is that:
 
- - You can **free up the memory** from the address you just passed, because the backend maintains its own CPU-side copy of the buffer during transfer (use mapping if you want to avoir that).
+ - You can **free up the memory** from the address you just passed, because the backend maintains its own CPU-side copy of the buffer during transfer (use mapping if you want to avoid that).
 
  - Commands that are **submitted in the queue after** the `writeBuffer()` operation will not be executed before the data transfer is finished.
 
